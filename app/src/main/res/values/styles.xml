@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme. -->
+    <style name="myButtonTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorButtonNormal">#9C9C9F</item>
+    </style>
+
+</resources>
