@@ -44,26 +44,33 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager());
-//        viewPager = findViewById(R.id.flFragment);
-//        viewPager.setAdapter(pagerAdapter);
+        viewPager = findViewById(R.id.flFragment);
+        viewPager.setAdapter(pagerAdapter);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, homeFragment);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int id = item.getItemId();
-                if(id == R.id.homeMenu){
-                    getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, homeFragment).commit();
-                } else if (id == R.id.categoryMenu) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, categoryFragment).commit();
-                }else if (id == R.id.postMenu){
-                    getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, postProductFragment).commit();
-                }else if (id == R.id.newsMenu){
-                    getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, newsFragment).commit();
-                }else if (id == R.id.settingsMenu){
-                    getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, settingFragment).commit();
+                switch (item.getItemId()) {
+                    case R.id.homeMenu:
+                        viewPager.setCurrentItem(0);
+                        return true;
+                    case R.id.categoryMenu:
+                        viewPager.setCurrentItem(1);
+                        return true;
+                    case R.id.postMenu:
+                        viewPager.setCurrentItem(2);
+                        return true;
+                    case R.id.newsMenu:
+                        viewPager.setCurrentItem(3);
+                        return true;
+                    case R.id.settingsMenu:
+                        viewPager.setCurrentItem(4);
+                        return true;
+                    default:
+                        return false;
                 }
-                return false;
             }
         });
     }

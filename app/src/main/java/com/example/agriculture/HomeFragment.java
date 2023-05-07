@@ -30,22 +30,16 @@ import java.util.ArrayList;
 
 
 public class HomeFragment extends Fragment {
-//
-//    RecyclerView recyclerView;
-//    DatabaseReference database;
-//    MyAdapter myAdapter;
-//    RecyclerView productCatRecycler;
-//    TextView txtUserName;
-//    ProductAdapter productAdapter;
-//
-//    HomeFragment homeFragment = new HomeFragment();
-//    CategoryFragment categoryFragment = new CategoryFragment();
-//    SettingFragment settingFragment = new SettingFragment();
-//    PostProductFragment postProductFragment = new PostProductFragment();
-//    NewsFragment newsFragment = new NewsFragment();
-//    ArrayList<ProductItem> list;
-//    BottomNavigationView bottomNavigationView;
-//    Button a;
+
+    private RecyclerView recyclerView;
+    private DatabaseReference database = FirebaseDatabase.getInstance().getReference("products");
+    private MyAdapter myAdapter;
+    private RecyclerView productCatRecycler;
+    private TextView txtUserName;
+    private ProductAdapter productAdapter;
+    ArrayList<ProductItem> list;
+    BottomNavigationView bottomNavigationView;
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -56,37 +50,36 @@ public class HomeFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
-//    @Override
-//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
-//        super.onViewCreated(view, savedInstanceState);
-//
-//        txtUserName = view.findViewById(R.id.tv_user);
-//
-//        recyclerView = view.findViewById(R.id.recycleProduct);
-//        database = FirebaseDatabase.getInstance().getReference("products");
-//        recyclerView.setHasFixedSize(true);
-//
-//        list = new ArrayList<>();
-//        myAdapter = new MyAdapter(this, list);
-//        recyclerView.setAdapter(myAdapter);
-//
-//        database.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-//                    ProductItem product = dataSnapshot.getValue(ProductItem.class);
-//                    list.add(product);
-//                }
-//                myAdapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//
-//
-//    }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
+        super.onViewCreated(view, savedInstanceState);
+        txtUserName = view.findViewById(R.id.tv_user);
+
+        recyclerView = view.findViewById(R.id.recycleProduct);
+        recyclerView.setHasFixedSize(true);
+
+        list = new ArrayList<>();
+        myAdapter = new MyAdapter(this.getContext(), list);
+        recyclerView.setAdapter(myAdapter);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
+        if(list.isEmpty()){
+            database.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                        ProductItem product = dataSnapshot.getValue(ProductItem.class);
+                        list.add(product);
+                    }
+                    myAdapter.notifyDataSetChanged();
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+    }
 
 }

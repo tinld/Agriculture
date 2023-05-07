@@ -5,4 +5,8 @@
         <item name="colorButtonNormal">#9C9C9F</item>
     </style>
 
+    <style name="roundImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">30dp</item>
+    </style>
 </resources>

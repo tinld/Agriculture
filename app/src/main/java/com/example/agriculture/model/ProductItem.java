@@ -1,8 +1,19 @@
 package com.example.agriculture.model;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
+@IgnoreExtraProperties
 public class ProductItem {
-    Integer getProductIteQty, productItemPrice;
-    String locationItem, productItemName, unitItem;
+    private Integer getProductIteQty, productItemPrice;
+    private String locationItem, productItemName, unitItem, dataImage;
+
+    public String getDataImage() {
+        return dataImage;
+    }
+
+    public void setDataImage(String dataImage) {
+        this.dataImage = dataImage;
+    }
 
     public Integer getGetProductIteQty() {
         return getProductIteQty;
@@ -44,11 +55,16 @@ public class ProductItem {
         this.unitItem = unitItem;
     }
 
-    //    public ProductItem(Integer getProductIteQty, Integer productItemPrice, String locationItem, String productItemName, String unitItem) {
-//        this.getProductIteQty = getProductIteQty;
-//        this.productItemPrice = productItemPrice;
-//        this.locationItem = locationItem;
-//        this.productItemName = productItemName;
-//        this.unitItem = unitItem;
-//    }
+    public ProductItem(Integer getProductIteQty, Integer productItemPrice, String locationItem, String productItemName, String unitItem, String dataImage) {
+        this.getProductIteQty = getProductIteQty;
+        this.productItemPrice = productItemPrice;
+        this.locationItem = locationItem;
+        this.productItemName = productItemName;
+        this.unitItem = unitItem;
+        this.dataImage = dataImage;
+    }
+
+    public ProductItem(){
+
+    }
 }
