@@ -58,6 +58,10 @@ public class HomeFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycleProduct);
         recyclerView.setHasFixedSize(true);
 
+        Intent intent = getActivity().getIntent();
+        Bundle bundle = intent.getBundleExtra("userLogin");
+        String userName = bundle.getString("nameKey");
+
         list = new ArrayList<>();
         myAdapter = new MyAdapter(this.getContext(), list);
         recyclerView.setAdapter(myAdapter);

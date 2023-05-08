@@ -3,97 +3,73 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/ic_cat_bg"
-    android:padding="5dp"
+    android:layout_height="140dp"
     android:layout_gravity="center"
-    android:layout_marginVertical="20dp">
+    android:layout_marginVertical="5dp"
+    android:layout_marginHorizontal="10dp">
 
-
-    <androidx.cardview.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="16dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.064"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:cardCornerRadius="80dp"
-        card_view:cardBackgroundColor="@android:color/transparent"
-        card_view:cardElevation="0dp">
+        android:background="@drawable/shape_item">
 
-        <ImageView
-            android:id="@+id/productItemImg"
-            android:layout_width="match_parent"
+        <androidx.cardview.widget.CardView
+            android:layout_width="130dp"
             android:layout_height="match_parent"
-            android:src="@drawable/money_bag_cambodian_riel_color_icon" />
-    </androidx.cardview.widget.CardView>
+            app:cardCornerRadius="80dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.064"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardElevation="0dp">
 
-    <TextView
-        android:id="@+id/productItemName"
-        android:layout_width="224dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="16dp"
-        android:textSize="20dp"
-        android:textColor="#05BFDB"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:text="Apple"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.812"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                android:id="@+id/productItemImg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/money_bag_cambodian_riel_color_icon" />
+        </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/tv_price"
-        android:layout_width="218dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="12dp"
-        android:gravity="center"
-        android:textSize="17dp"
-        android:text="15000 VND/kg"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.787"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productItemName" />
+        <LinearLayout
+            android:layout_width="243dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btnBuy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="144dp"
-        android:backgroundTint="#DA0909"
-        android:text="Buy"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.66"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+            <TextView
+                android:id="@+id/productItemName"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:text="Apple"
+                android:textColor="#05BFDB"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"/>
 
-    <TextView
-        android:id="@+id/tv_qty"
-        android:layout_width="224dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:gravity="center"
-        android:text="1000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.804"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_price" />
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="match_parent"
+                android:layout_height="33dp"
+                android:text="15000 VND/kg"
+                android:layout_marginTop="7dp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:textSize="17dp"
+                android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/add_cat"
-        android:layout_width="50dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="152dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/order_placed_purchased_icon" />
+            <TextView
+                android:id="@+id/tv_qty"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:gravity="center"
+                android:text="1000"
+                android:layout_marginTop="7dp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

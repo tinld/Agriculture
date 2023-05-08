@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Agriculture"
         tools:targetApi="31">
         <activity
+            android:name=".Shipping"
+            android:exported="false" />
+        <activity
             android:name=".progress_layout"
             android:exported="false" />
         <activity

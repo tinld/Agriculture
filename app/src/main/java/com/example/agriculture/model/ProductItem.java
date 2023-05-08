@@ -5,7 +5,11 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class ProductItem {
     private Integer getProductIteQty, productItemPrice;
-    private String locationItem, productItemName, unitItem, dataImage;
+    private String locationItem, productItemName, unitItem, dataImage, key;
+
+    public String getKey() {
+        return key;
+    }
 
     public String getDataImage() {
         return dataImage;
@@ -55,13 +59,14 @@ public class ProductItem {
         this.unitItem = unitItem;
     }
 
-    public ProductItem(Integer getProductIteQty, Integer productItemPrice, String locationItem, String productItemName, String unitItem, String dataImage) {
+    public ProductItem(Integer getProductIteQty, Integer productItemPrice, String locationItem, String productItemName, String unitItem, String dataImage, String key) {
         this.getProductIteQty = getProductIteQty;
         this.productItemPrice = productItemPrice;
         this.locationItem = locationItem;
         this.productItemName = productItemName;
         this.unitItem = unitItem;
         this.dataImage = dataImage;
+        this.key = key;
     }
 
     public ProductItem(){

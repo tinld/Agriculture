@@ -132,8 +132,10 @@ public class PostProductFragment extends Fragment {
         Integer price = Integer.valueOf(productPrice.getText().toString());
         Integer quantity = Integer.valueOf(productQuantity.getText().toString());
 
-        ProductItem product = new ProductItem(quantity, price, location, name, unit, imageURL);
         String currentDate = String.valueOf(DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime()).hashCode());
+
+        ProductItem product = new ProductItem(quantity, price, location, name, unit, imageURL, currentDate);
+
         database.child(currentDate).setValue(product)
             .addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override

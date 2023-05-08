@@ -1,6 +1,7 @@
 package com.example.agriculture;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -10,12 +11,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.example.agriculture.model.CartProduct;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -23,11 +31,16 @@ import java.util.Objects;
 
 public class ProductDetails extends AppCompatActivity {
     Context context;
-    Button addToCart, decreaseBtn, increaseBtn;
+    private Button addToCart, decreaseBtn, increaseBtn;
     TextView numberProduct;
-    Integer quantity, totalPrice, price;
-    String nameProduct, imageProduct;
+    Integer totalPrice, price;
+    Integer quantity = 1;
+    String nameProduct, imageProduct, unitProduct, keyProduct;
     private DatabaseReference database = FirebaseDatabase.getInstance().getReference("cart");
+    CartProduct cart;
+
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.context = context;
@@ -44,9 +57,13 @@ public class ProductDetails extends AppCompatActivity {
         ImageView imageItem = (ImageView) findViewById(R.id.imageView8);
         Glide.with(this).load(imageProduct).into(imageItem);
 
+        keyProduct = itemData.getString("Key");
+        unitProduct = itemData.getString("Unit");
         TextView priceItem = (TextView) findViewById(R.id.textView3);
+
         price = itemData.getInt("Price");
         priceItem.setText(String.valueOf(price));
+
 
         Integer maxQuantity = itemData.getInt("Number");
 
@@ -57,10 +74,10 @@ public class ProductDetails extends AppCompatActivity {
             }
         });
 
-        addToCart = (Button) findViewById(R.id.addtocart);
-        increaseBtn = (Button) findViewById(R.id.increaseProduct);
-        decreaseBtn = (Button) findViewById(R.id.decreaseProduct);
-        numberProduct = (TextView) findViewById(R.id.numberProduct);
+        addToCart = findViewById(R.id.addToCart);
+        increaseBtn = findViewById(R.id.increaseProduct);
+        decreaseBtn = findViewById(R.id.decreaseProduct);
+        numberProduct = findViewById(R.id.numberProduct);
         numberProduct.setText("1");
 
         increaseBtn.setOnClickListener(new View.OnClickListener() {
@@ -88,35 +105,35 @@ public class ProductDetails extends AppCompatActivity {
                 numberProduct.setText(String.valueOf(quantity));
             }
         });
-//
-//
-//        addToCart.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v){
-//
-//            }
-//        });
+
+        addToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addedToCart();
+            }
+        });
     }
 
     private void addedToCart(){
-        String saveCurrentDate, saveCurrentTime;
-        Calendar calForDate = Calendar.getInstance();
-
-        SimpleDateFormat currentDate = new SimpleDateFormat("MM dd, yyyy");
-        saveCurrentDate = currentDate.format(calForDate.getTime());
-
-        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
-        saveCurrentTime = currentTime.format(calForDate.getTime());
-
+        String currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
+        String keyCart = String.valueOf(DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime()).hashCode());
         totalPrice = quantity*price;
-        final HashMap<String, Object> cartMap = new HashMap<>();
-        cartMap.put("productName", nameProduct);
-        cartMap.put("productPrice", price.toString());
-        cartMap.put("currentDate", saveCurrentDate);
-        cartMap.put("currentTime", saveCurrentTime);
-        cartMap.put("totalQuantity", quantity.toString());
-        cartMap.put("totalPrice", totalPrice.toString());
+        String userID = auth.getCurrentUser().getUid();
+        cart = new CartProduct(quantity, price, nameProduct, unitProduct, imageProduct, currentDate, keyCart,userID);
 
+        database.child(keyCart).setValue(cart)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
 
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
     }
 }

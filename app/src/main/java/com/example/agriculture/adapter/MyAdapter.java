@@ -51,6 +51,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             public void onClick(View v) {
                 Intent i = new Intent(context, ProductDetails.class);
                 Bundle itemData = new Bundle();
+                itemData.putString("Key", product.getKey());
                 itemData.putString("Image", product.getDataImage());
                 itemData.putString("Name", product.getProductItemName());
                 itemData.putString("Unit", product.getUnitItem());
