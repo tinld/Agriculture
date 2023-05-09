@@ -3,11 +3,11 @@
     <item
         android:id="@+id/homeMenu"
         android:title="@string/home"
-        android:icon="@drawable/home_button_icon"/>
+        android:icon="@drawable/baseline_home_24"/>
     <item
         android:id="@+id/categoryMenu"
         android:title="@string/category"
-        android:icon="@drawable/gallery_tiles_view_outline_icon"/>
+        android:icon="@drawable/baseline_category_24"/>
     <item
         android:id="@+id/postMenu"
         android:title="@string/post"
@@ -15,9 +15,9 @@
     <item
         android:id="@+id/newsMenu"
         android:title="@string/news"
-        android:icon="@drawable/online_news_icon"/>
+        android:icon="@drawable/baseline_newspaper_24"/>
     <item
         android:id="@+id/settingsMenu"
         android:title="@string/setting"
-        android:icon="@drawable/work_started_icon"/>
+        android:icon="@drawable/baseline_settings_24"/>
 </menu>
