@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -56,9 +54,15 @@ public class Login extends AppCompatActivity {
                                         Intent intent = new Intent(Login.this, MainActivity.class);
                                         Bundle bundle = new Bundle();
                                         String userName = loginEmail.getText().toString();
+                                        String userPassword = loginPassword.getText().toString();
                                         bundle.putString("nameKey", userName);
                                         intent.putExtra("userLogin", bundle);
                                         startActivity(intent);
+                                        //
+                                        Intent intentProfile = new Intent(Login.this, SettingFragment.class);
+                                        intentProfile.putExtra("profileEmail", userName);
+                                        intentProfile.putExtra("profilePassword", userPassword);
+                                        startActivity(intentProfile);
                                         finish();
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {

@@ -72,6 +72,7 @@ public class HomeFragment extends Fragment {
         Intent intent = getActivity().getIntent();
         Bundle bundle = intent.getBundleExtra("userLogin");
         String userName = bundle.getString("nameKey");
+        txtUserName.setText("Hello, " + userName);
 
         list = new ArrayList<>();
         myAdapter = new MyAdapter(this.getContext(), list);

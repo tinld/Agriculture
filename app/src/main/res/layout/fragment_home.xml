@@ -68,16 +68,18 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/car_slider"
-        android:layout_width="370dp"
-        android:layout_height="182dp"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
         android:layout_marginBottom="60dp"
-        app:cardBackgroundColor="#94EA98"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="20dp"
         app:cardElevation="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/cat_recycler"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/edt_search"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints">
@@ -85,7 +87,7 @@
         <com.denzcoskun.imageslider.ImageSlider
             android:id="@+id/imageSlider"
             android:layout_width="wrap_content"
-            android:layout_height="200dp"
+            android:layout_height="150dp"
             app:iss_auto_cycle="true"
             app:iss_delay="1000"
             app:iss_period="1000"
@@ -98,7 +100,7 @@
         android:id="@+id/imageView3"
         android:layout_width="38dp"
         android:layout_height="33dp"
-        android:layout_marginTop="308dp"
+        android:layout_marginTop="280dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.042"
         app:layout_constraintStart_toStartOf="parent"
@@ -120,10 +122,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="350dp"
-        android:background="@drawable/edittext_bg"
-        android:backgroundTint="#F003A9F4"
-        android:orientation="vertical">
+        android:layout_marginTop="330dp"
+        android:background="@drawable/edittext_bg2"
+        android:backgroundTint="#D1E9D2"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
@@ -131,10 +135,13 @@
             android:text="New Products"
             android:textColor="@color/white"
             android:textSize="20dp"
+            android:gravity="center"
+
             android:background="@drawable/ic_cat_bg"
-            android:backgroundTint="#D61608"
+            android:backgroundTint="#FFB72B"
             android:textStyle="bold"
-            android:layout_marginStart="18dp"/>
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleProduct"

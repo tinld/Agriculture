@@ -3,8 +3,9 @@
 
 
     <solid android:color="#F4F3F3"/>
-    <corners android:radius="45dp"/>
-    <stroke android:width="@dimen/cardview_compat_inset_shadow"/>
+    <corners android:radius="0dp"/>
+
+
 
 
 </shape>
