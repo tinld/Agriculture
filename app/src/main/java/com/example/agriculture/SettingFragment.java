@@ -16,6 +16,9 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
+import com.example.agriculture.model.ProductItem;
+import com.example.agriculture.model.User;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -37,13 +40,14 @@ public class SettingFragment extends Fragment {
     public SettingFragment() {
         // Required empty public constructor
     }
-
+    private DatabaseReference database = FirebaseDatabase.getInstance().getReference("users");
     CircleImageView profileImg;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     TextView titleName, profileName, profileEmail, profilePhone, profileAddress;
     String fullName, email, phone, address;
     Button editProfile;
-    FirebaseAuth authProfile;
 
+    FirebaseAuth auth = FirebaseAuth.getInstance();
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -52,62 +56,68 @@ public class SettingFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
 
-//        profileImg = view.findViewById(R.id.profile_img);
-//        titleName = view.findViewById(R.id.titleName);
-//        profileName = view.findViewById(R.id.profileName);
-//        profileEmail = view.findViewById(R.id.profileEmail);
-//        profileAddress = view.findViewById(R.id.profileAddress);
-//        profilePhone = view.findViewById(R.id.profilePhone);
-//        editProfile = view.findViewById(R.id.editButton);
-//
-//        // set onclicklistener on image
-//        profileImg = view.findViewById(R.id.profileName);
-//        profileImg.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getActivity(), UploadProfilePicActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        authProfile = FirebaseAuth.getInstance();
-//        FirebaseUser firebaseUser = authProfile.getCurrentUser();
-//
-//        if (firebaseUser == null){
-//            Toast.makeText(getActivity(), "Something went wrong! User's details are not at the moment", Toast.LENGTH_SHORT).show();
-//        } else {
-//            showUserProfile(firebaseUser);
-//        }
+        profileImg = view.findViewById(R.id.profile_img);
+        titleName = view.findViewById(R.id.titleName);
+        profileName = view.findViewById(R.id.profileName);
+        profileEmail = view.findViewById(R.id.profileEmail);
+        profileAddress = view.findViewById(R.id.profileAddress);
+        profilePhone = view.findViewById(R.id.profilePhone);
+        editProfile = view.findViewById(R.id.editButton);
+
+        editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), UploadProfilePicActivity.class);
+                startActivity(intent);
+            }
+        });
+        showUserProfile();
+
         return view;
     }
 
-    private void showUserProfile(FirebaseUser firebaseUser) {
-        String userID = firebaseUser.getUid();
+    private void showUserProfile() {
+        String userID = auth.getCurrentUser().getUid();
 
         //Extracting User Reference from Database for "Registered Users"
-        DatabaseReference referenceProfile = FirebaseDatabase.getInstance().getReference("Registered Users");
-        referenceProfile.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+        User userProfile = new User();
+        DatabaseReference referenceProfile = FirebaseDatabase.getInstance().getReference("users");
+        referenceProfile.addValueEventListener(new ValueEventListener() {
+            String name, email, address, phone, image;
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ReadWriteUserDetails readUserDetails = snapshot.getValue(ReadWriteUserDetails.class);
-                    if (readUserDetails != null){
-                        email = firebaseUser.getEmail();
-                        fullName = readUserDetails.fullName;
-                        phone = readUserDetails.phone;
-                        address = readUserDetails.address;
-
-                        titleName.setText("Welcome, " + email + "!");
-                        profileName.setText(fullName);
-                        profileEmail.setText(email);
-                        profilePhone.setText(phone);
-                        profileAddress.setText(address);
+                for(DataSnapshot keyId: snapshot.getChildren()){
+                    if(keyId.child("id").getValue().equals(userID)){
+                        name = keyId.child("name").getValue(String.class);
+                        email = keyId.child("email").getValue(String.class);
+                        address = keyId.child("address").getValue(String.class);
+                        phone = keyId.child("phone").getValue(String.class);
+                        image = keyId.child("dataImage").getValue(String.class);
+                        break;
                     }
+                }
+
+                String hello = "Hello, " + name + "!";
+                Glide.with(getContext()).load(image).into(profileImg);
+                profileName.setText(name);
+                profileEmail.setText(email);
+                profilePhone.setText(phone);
+                profileAddress.setText(address);
+                titleName.setText(hello);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getActivity(), "Something went wrong!", Toast.LENGTH_SHORT).show();
+
             }
         });
+//        Toast.makeText(getContext(), userID, Toast.LENGTH_SHORT).show();
+//        referenceProfile.child(userID).child("name").getKey();
+//        titleName.setText("Welcome, " + fullName + "!");
+//        profileName.setText(referenceProfile.child(userID).child("name").getValue().toString());
+//        profileEmail.setText(email);
+//        profilePhone.setText(phone);
+//        profileAddress.setText(address);
+
     }
 }

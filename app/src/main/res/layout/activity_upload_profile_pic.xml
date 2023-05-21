@@ -1,55 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UploadProfilePicActivity">
+    android:background="#4CAF50"
+    tools:context=".MainActivity">
 
-    <RelativeLayout
+    <ImageButton
+        android:id="@+id/imageReturn"
+        android:layout_width="30dp"
+        android:layout_height="26dp"
+        android:background="@null"
+        android:padding="0dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.041"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.06"
+        app:srcCompat="@drawable/arrow" />
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:layout_margin="15dp"
-        android:background="@color/white">
+        android:layout_margin="30dp"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView_upload_pic_head"
-            android:text="Upload your profile pic"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
+            android:layout_height="594dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/custome_edittext"
+            android:orientation="vertical"
+            android:padding="20dp">
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/upload_pic_choose_button"
-            android:layout_below="@id/textView_upload_pic_head"
-            android:layout_marginTop="20dp"
-            android:text="Choose picture"
-            android:layout_marginRight="70dp"
-            android:layout_marginLeft="70dp"
-            android:backgroundTint="@color/teal_200"/>
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Update Profile"
+                android:textAlignment="center"
+                android:textColor="#009688"
+                android:textSize="36sp"
+                android:textStyle="bold" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:id="@+id/imageView_profile_dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/edittext_bg"
-            android:layout_below="@+id/upload_pic_choose_button"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/upload_pic_button"
-            android:layout_below="@+id/imageView_profile_dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="70dp"
-            android:layout_marginRight="70dp"
-            android:text="Upload"/>
+            <EditText
+                android:id="@+id/profileName"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/custome_edittext"
+                android:drawableLeft="@drawable/baseline_local_grocery_store_24"
+                android:drawablePadding="8dp"
+                android:hint="User name"
+                android:padding="8dp"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/profileEmail"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custome_edittext"
+                android:drawableLeft="@drawable/baseline_price_check_24"
+                android:drawablePadding="8dp"
+                android:hint="User email"
+                android:padding="8dp"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/profilePhone"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custome_edittext"
+                android:drawableLeft="@drawable/baseline_add_location_24"
+                android:drawablePadding="8dp"
+                android:hint="Phone"
+                android:padding="8dp"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/profileAddress"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custome_edittext"
+                android:drawableLeft="@drawable/baseline_ad_units_24"
+                android:drawablePadding="8dp"
+                android:hint="Address"
+                android:padding="8dp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="110dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="76dp"
+                android:background="@drawable/custome_edittext"
+                android:padding="8dp"
+                android:text="Upload Image"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.368"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/uploadFile"
+                app:layout_constraintVertical_bias="0.021" />
+
+            <ImageView
+                android:id="@+id/changeImage"
+                android:layout_width="71dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.729"
+                app:layout_constraintStart_toStartOf="@+id/textView9"
+                app:layout_constraintTop_toBottomOf="@+id/productItemQuantity"
+                app:layout_constraintVertical_bias="0.422"
+
+                app:srcCompat="@drawable/upload_image" />
+
+            <Button
+                android:id="@+id/uploadFile"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="#4CAF50"
+                android:text="Upload"
+                android:textSize="18sp"
+                app:cornerRadius="20dp" />
 
 
-    </RelativeLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
-</ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

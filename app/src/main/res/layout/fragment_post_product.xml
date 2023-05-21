@@ -1,139 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:backgroundTint="#CE53AF4C"
-    android:layout_marginTop="70dp"
-    android:padding="10dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/edittext_bg"
+    android:layout_height="match_parent"
+    android:background="#4CAF50"
     tools:context=".MainActivity">
 
-
-        <EditText
-            android:id="@+id/productItemName"
-            android:layout_width="290dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="57dp"
-            android:layout_marginTop="80dp"
-            android:ems="10"
-            android:hint="Product Name"
-            android:inputType="text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/productItemLocation"
-            android:layout_width="290dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="57dp"
-            android:layout_marginTop="200dp"
-            android:ems="10"
-            android:hint="Location"
-            android:inputType="text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.479"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/productItemName" />
-
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="71dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="230dp"
-            android:layout_marginTop="380dp"
-            app:srcCompat="@drawable/upload_image" />
-
-        <Button
-            android:id="@+id/uploadFile"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="115dp"
-            android:layout_marginTop="500dp"
-            android:text="Upload"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.512"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView6"
-            app:layout_constraintVertical_bias="0.221" />
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="227dp"
-            android:layout_height="23dp"
-            android:layout_marginLeft="57dp"
-            android:layout_marginTop="400dp"
-            android:layout_marginEnd="76dp"
-            android:text="Upload Image"
-            android:textAlignment="center"
-            android:textSize="17dp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/productItemQuantity"
-            android:layout_width="290dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="57dp"
-            android:layout_marginTop="260dp"
-            android:ems="10"
-            android:hint="Quantity"
-            android:inputType="text"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.471"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/productItemUnit"
-            app:layout_constraintVertical_bias="0.19" />
-
-        <EditText
-            android:id="@+id/productItemUnit"
-            android:layout_width="290dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="57dp"
-            android:layout_marginTop="320dp"
-            android:hint="Unit"
-            android:inputType="text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.479"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/productItemLocation" />
-
-        <EditText
-            android:id="@+id/productItemPrice"
-            android:layout_width="290dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="57dp"
-            android:layout_marginTop="140dp"
-            android:ems="10"
-            android:hint="Price"
-            android:inputType="text"
-            app:layout_constraintBottom_toTopOf="@+id/productItemLocation"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.471"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/productItemName"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/textView8"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="Upload Product"
-            android:textAlignment="center"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/productItemName"
+            android:layout_margin="30dp"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/custome_edittext"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                        <TextView
+                            android:id="@+id/textView8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Upload Product"
+                            android:textAlignment="center"
+                            android:textColor="#009688"
+                            android:textSize="36sp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/productItemName"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="40dp"
+                            android:background="@drawable/custome_edittext"
+                            android:drawableLeft="@drawable/baseline_local_grocery_store_24"
+                            android:drawablePadding="8dp"
+                            android:hint="Product Name"
+                            android:padding="8dp"
+                            android:textColor="@color/black" />
+
+                        <EditText
+                            android:id="@+id/productItemPrice"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/custome_edittext"
+                            android:drawableLeft="@drawable/baseline_price_check_24"
+                            android:drawablePadding="8dp"
+                            android:hint="Price"
+                            android:padding="8dp"
+                            android:textColor="@color/black" />
+
+                        <EditText
+                            android:id="@+id/productItemLocation"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/custome_edittext"
+                            android:drawableLeft="@drawable/baseline_add_location_24"
+                            android:drawablePadding="8dp"
+                            android:hint="Location"
+                            android:padding="8dp"
+                            android:textColor="@color/black" />
+
+                        <EditText
+                            android:id="@+id/productItemUnit"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/custome_edittext"
+                            android:drawableLeft="@drawable/baseline_ad_units_24"
+                            android:drawablePadding="8dp"
+                            android:hint="Unit"
+                            android:inputType="textPassword"
+                            android:padding="8dp"
+                            android:textColor="@color/black" />
+
+                        <EditText
+                            android:id="@+id/productItemQuantity"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/custome_edittext"
+                            android:drawableLeft="@drawable/baseline_numbers_24"
+                            android:drawablePadding="8dp"
+                            android:hint="Numbers"
+                            android:padding="8dp"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/textView9"
+                            android:layout_width="110dp"
+                            android:layout_height="33dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="76dp"
+                            android:background="@drawable/custome_edittext"
+                            android:padding="8dp"
+                            android:text="Upload Image"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.368"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/uploadFile"
+                            app:layout_constraintVertical_bias="0.021" />
+
+                        <ImageView
+                            android:id="@+id/imageView6"
+                            android:layout_width="71dp"
+                            android:layout_height="60dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.729"
+                            app:layout_constraintStart_toStartOf="@+id/textView9"
+                            app:layout_constraintTop_toBottomOf="@+id/productItemQuantity"
+                            app:layout_constraintVertical_bias="0.422"
+
+                            app:srcCompat="@drawable/upload_image" />
+
+                        <Button
+                            android:id="@+id/uploadFile"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="30dp"
+                            android:backgroundTint="#4CAF50"
+                            android:text="Upload"
+                            android:textSize="18sp"
+                            app:cornerRadius="20dp" />
+
+
+                </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
 
 
 
 
-</FrameLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
