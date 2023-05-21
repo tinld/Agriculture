@@ -52,34 +52,33 @@ public class SettingFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
 
-
-        profileImg = view.findViewById(R.id.profile_img);
-        titleName = view.findViewById(R.id.titleName);
-        profileName = view.findViewById(R.id.profileName);
-        profileEmail = view.findViewById(R.id.profileEmail);
-        profileAddress = view.findViewById(R.id.profileAddress);
-        profilePhone = view.findViewById(R.id.profilePhone);
-        editProfile = view.findViewById(R.id.editButton);
-
-        // set onclicklistener on image
-        profileImg = view.findViewById(R.id.profileName);
-        profileImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), UploadProfilePicActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        authProfile = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = authProfile.getCurrentUser();
-
-        if (firebaseUser == null){
-            Toast.makeText(getActivity(), "Something went wrong! User's details are not at the moment", Toast.LENGTH_SHORT).show();
-        } else {
-            showUserProfile(firebaseUser);
-        }
-        return  view;
+//        profileImg = view.findViewById(R.id.profile_img);
+//        titleName = view.findViewById(R.id.titleName);
+//        profileName = view.findViewById(R.id.profileName);
+//        profileEmail = view.findViewById(R.id.profileEmail);
+//        profileAddress = view.findViewById(R.id.profileAddress);
+//        profilePhone = view.findViewById(R.id.profilePhone);
+//        editProfile = view.findViewById(R.id.editButton);
+//
+//        // set onclicklistener on image
+//        profileImg = view.findViewById(R.id.profileName);
+//        profileImg.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getActivity(), UploadProfilePicActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        authProfile = FirebaseAuth.getInstance();
+//        FirebaseUser firebaseUser = authProfile.getCurrentUser();
+//
+//        if (firebaseUser == null){
+//            Toast.makeText(getActivity(), "Something went wrong! User's details are not at the moment", Toast.LENGTH_SHORT).show();
+//        } else {
+//            showUserProfile(firebaseUser);
+//        }
+        return view;
     }
 
     private void showUserProfile(FirebaseUser firebaseUser) {

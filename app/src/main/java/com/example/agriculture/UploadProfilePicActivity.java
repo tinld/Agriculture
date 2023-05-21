@@ -22,7 +22,7 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
+//import com.squareup.picasso.Picasso;
 
 public class UploadProfilePicActivity extends AppCompatActivity {
 
@@ -40,36 +40,36 @@ public class UploadProfilePicActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_profile_pic);
 
-        Button buttonUploadPicChoose = findViewById(R.id.upload_pic_choose_button);
-        Button buttonUploadPic = findViewById(R.id.upload_pic_button);
-
-        imageViewUpload = findViewById(R.id.imageView_profile_dp);
-
-        authProfile = FirebaseAuth.getInstance();
-        firebaseUser = authProfile.getCurrentUser();
-
-        storageReference = FirebaseStorage.getInstance().getReference("DisplayPics");
-
-        Uri uri = firebaseUser.getPhotoUrl();
-
-        //
-        //
-        Picasso.get().load(uri).into(imageViewUpload);
-
-        buttonUploadPicChoose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openFileChooser();
-            }
-        });
-
-        //
-        buttonUploadPic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                UploadPic();
-            }
-        });
+//        Button buttonUploadPicChoose = findViewById(R.id.upload_pic_choose_button);
+//        Button buttonUploadPic = findViewById(R.id.upload_pic_button);
+//
+//        imageViewUpload = findViewById(R.id.imageView_profile_dp);
+//
+//        authProfile = FirebaseAuth.getInstance();
+//        firebaseUser = authProfile.getCurrentUser();
+//
+//        storageReference = FirebaseStorage.getInstance().getReference("DisplayPics");
+//
+//        Uri uri = firebaseUser.getPhotoUrl();
+//
+//        //
+//        //
+//        Picasso.get().load(uri).into(imageViewUpload);
+//
+//        buttonUploadPicChoose.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                openFileChooser();
+//            }
+//        });
+//
+//        //
+//        buttonUploadPic.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                UploadPic();
+//            }
+//        });
     }
 
     private void openFileChooser(){
