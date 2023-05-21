@@ -4,127 +4,150 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#4CAF50"
     tools:context=".MainActivity">
 
-
-    <EditText
-        android:id="@+id/productItemName"
-        android:layout_width="290dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="92dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Product Name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/productItemLocation"
-        android:layout_width="290dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="140dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Location"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.479"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productItemName" />
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="71dp"
-        android:layout_height="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.729"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productItemUnit"
-        app:layout_constraintVertical_bias="0.422"
-        app:srcCompat="@drawable/upload_image" />
-
-    <Button
-        android:id="@+id/uploadFile"
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Upload"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6"
-        app:layout_constraintVertical_bias="0.221" />
+        android:layout_margin="30dp"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp">
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="110dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="76dp"
-        android:text="Upload Image"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.368"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView6"
-        app:layout_constraintVertical_bias="0.021" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:padding="24dp"
+            android:background="@drawable/custome_edittext">
 
-    <EditText
-        android:id="@+id/productItemQuantity"
-        android:layout_width="290dp"
-        android:layout_height="40dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.471"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productItemUnit"
-        app:layout_constraintVertical_bias="0.19" />
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Upload Product"
+                android:textSize="36sp"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textColor="#009688"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/productItemName"
+                android:background="@drawable/custome_edittext"
+                android:layout_marginTop="40dp"
+                android:padding="8dp"
+                android:hint="Product Name"
+                android:drawableLeft="@drawable/baseline_local_grocery_store_24"
+                android:drawablePadding="8dp"
+                android:textColor="@color/black"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/productItemPrice"
+                android:background="@drawable/custome_edittext"
+                android:layout_marginTop="20dp"
+                android:padding="8dp"
+                android:hint="Price"
+                android:drawableLeft="@drawable/baseline_price_check_24"
+                android:drawablePadding="8dp"
+                android:textColor="@color/black"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/productItemLocation"
+                android:background="@drawable/custome_edittext"
+                android:layout_marginTop="20dp"
+                android:padding="8dp"
+                android:hint="Location"
+                android:drawableLeft="@drawable/baseline_add_location_24"
+                android:drawablePadding="8dp"
+                android:textColor="@color/black"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/productItemUnit"
+                android:background="@drawable/custome_edittext"
+                android:layout_marginTop="20dp"
+                android:padding="8dp"
+                android:hint="Unit"
+                android:inputType="textPassword"
+                android:drawableLeft="@drawable/baseline_ad_units_24"
+                android:drawablePadding="8dp"
+                android:textColor="@color/black"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/productItemQuantity"
+                android:background="@drawable/custome_edittext"
+                android:layout_marginTop="20dp"
+                android:padding="8dp"
+                android:hint="Numbers"
+                android:drawableLeft="@drawable/baseline_numbers_24"
+                android:drawablePadding="8dp"
+                android:textColor="@color/black"/>
 
-    <EditText
-        android:id="@+id/productItemUnit"
-        android:layout_width="290dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Unit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.479"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productItemLocation" />
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="110dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="76dp"
+                android:text="Upload Image"
+                android:textStyle="bold"
+                android:padding="8dp"
+                android:background="@drawable/custome_edittext"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.368"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/uploadFile"
+                app:layout_constraintVertical_bias="0.021" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="71dp"
+                android:layout_height="60dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.729"
+                app:layout_constraintStart_toStartOf="@+id/textView9"
+                app:layout_constraintTop_toBottomOf="@+id/productItemQuantity"
+                app:layout_constraintVertical_bias="0.422"
+
+                app:srcCompat="@drawable/upload_image" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="Upload"
+                android:id="@+id/uploadFile"
+                android:textSize="18sp"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="#4CAF50"
+                app:cornerRadius = "20dp"/>
 
 
-    <EditText
-        android:id="@+id/productItemPrice"
-        android:layout_width="290dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="52dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Price"
-        app:layout_constraintBottom_toTopOf="@+id/productItemLocation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.471"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productItemName"
-        app:layout_constraintVertical_bias="0.0" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Upload Product"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/productItemName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.example.agriculture;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,12 +12,18 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -32,14 +39,12 @@ public class SettingFragment extends Fragment {
     }
 
     CircleImageView profileImg;
-    TextView profileName, profileEmail, profilePhone, profileAddress, profilePassword;
-    TextView titleName;
+    TextView titleName, profileName, profileEmail, profilePhone, profileAddress;
+    String fullName, email, phone, address;
     Button editProfile;
+    FirebaseAuth authProfile;
 
-    Button updateImg;
-    FirebaseAuth auth;
-    FirebaseStorage storage;
-    FirebaseDatabase database;
+
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,153 +52,63 @@ public class SettingFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
 
-        auth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance();
-        storage = FirebaseStorage.getInstance();
 
         profileImg = view.findViewById(R.id.profile_img);
+        titleName = view.findViewById(R.id.titleName);
         profileName = view.findViewById(R.id.profileName);
         profileEmail = view.findViewById(R.id.profileEmail);
-        profilePassword = view.findViewById(R.id.profilePassword);
         profileAddress = view.findViewById(R.id.profileAddress);
         profilePhone = view.findViewById(R.id.profilePhone);
         editProfile = view.findViewById(R.id.editButton);
-        updateImg = view.findViewById(R.id.btnUpdateImg);
 
-        Intent intent = getActivity().getIntent();
-        String userEmail = intent.getStringExtra("profileEmail"); ;
-        String userPassword = intent.getStringExtra("profilePassword");
-
-        profileEmail.setText(userEmail);
-        profilePassword.setText(userPassword);
-
-//        showUserData();
-
-        editProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                passUserData();
-                Intent intent = new Intent(getActivity(), EditProfileActivity.class);
-                String name = profileName.getText().toString();
-                String email = profileEmail.getText().toString();
-                String phone = profilePhone.getText().toString();
-                String password = profilePassword.getText().toString();
-                String address = profileAddress.getText().toString();
-                intent.putExtra("name", name);
-                intent.putExtra("email",email);
-                intent.putExtra("phone", phone);
-                intent.putExtra("password", password);
-                intent.putExtra("address", address);
-
-                startActivity(intent);
-
-
-            }
-        });
-
+        // set onclicklistener on image
+        profileImg = view.findViewById(R.id.profileName);
         profileImg.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
-                startActivityForResult(intent, 33);
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), UploadProfilePicActivity.class);
+                startActivity(intent);
             }
         });
-        updateImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateUserProfile();
-            }
 
+        authProfile = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = authProfile.getCurrentUser();
 
-        });
-
+        if (firebaseUser == null){
+            Toast.makeText(getActivity(), "Something went wrong! User's details are not at the moment", Toast.LENGTH_SHORT).show();
+        } else {
+            showUserProfile(firebaseUser);
+        }
         return  view;
     }
 
-//    private void showUserData() {
-//        Intent intent = getActivity().getIntent();
-//        String userEmail = intent.getStringExtra("profileEmail"); ;
-//        String userPassword = intent.getStringExtra("profilePassword");
+    private void showUserProfile(FirebaseUser firebaseUser) {
+        String userID = firebaseUser.getUid();
 
-//        String userName = intent.getStringExtra("name");
-//        String userPhone = intent.getStringExtra("phone");
-//        String userAddress = intent.getStringExtra("address");
+        //Extracting User Reference from Database for "Registered Users"
+        DatabaseReference referenceProfile = FirebaseDatabase.getInstance().getReference("Registered Users");
+        referenceProfile.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ReadWriteUserDetails readUserDetails = snapshot.getValue(ReadWriteUserDetails.class);
+                    if (readUserDetails != null){
+                        email = firebaseUser.getEmail();
+                        fullName = readUserDetails.fullName;
+                        phone = readUserDetails.phone;
+                        address = readUserDetails.address;
 
-//        titleName.setText(userName);
-//        profileName.setText(userName);
-//        profilePhone.setText(userPhone);
-//        profileAddress.setText(userAddress);
-//        profileEmail.setText(userEmail);
-//        profilePassword.setText(userPassword);
+                        titleName.setText("Welcome, " + email + "!");
+                        profileName.setText(fullName);
+                        profileEmail.setText(email);
+                        profilePhone.setText(phone);
+                        profileAddress.setText(address);
+                    }
+            }
 
-//    }
-
-//    public void passUserData() {
-//        String userName = profileEmail.getText().toString().trim();
-//
-//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
-//        Query checkUserDatabase = reference.orderByChild("username").equalTo(userName);
-//
-//        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if (snapshot.exists()) {
-//                    String nameFromDB = snapshot.child(userName).child("name").getValue(String.class);
-//                    String emailFromDB = snapshot.child(userName).child("email").getValue(String.class);
-//                    String phoneFromDB = snapshot.child(userName).child("phone").getValue(String.class);
-//                    String passwordFromDB = snapshot.child(userName).child("password").getValue(String.class);
-//                    String addressFromDB = snapshot.child(userName).child("address").getValue(String.class);
-//
-//                    Intent intent = new Intent(getActivity(), EditProfileActivity.class);
-//
-//                    intent.putExtra("name", nameFromDB);
-//                    intent.putExtra("email", emailFromDB);
-//                    intent.putExtra("phone", phoneFromDB);
-//                    intent.putExtra("password", passwordFromDB);
-//                    intent.putExtra("address", addressFromDB);
-//
-//                    startActivity(intent);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//    }
-
-    private void updateUserProfile() {
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @NonNull Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (data.getData() != null){
-            Uri profileUri = data.getData();
-            profileImg.setImageURI(profileUri);
-
-            final StorageReference reference = storage.getReference().child("profile_picture")
-                    .child(FirebaseAuth.getInstance().getUid());
-
-            reference.putFile(profileUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Toast.makeText(getContext(), "Uploaded", Toast.LENGTH_SHORT).show();
-
-                    reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            database.getReference().child("Users").child(FirebaseAuth.getInstance().getUid())
-                                    .child("profileImg").setValue(uri.toString());
-                            Toast.makeText(getContext(), "Profile Picture Uploaded", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-            });
-        }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getActivity(), "Something went wrong!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
