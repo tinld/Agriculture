@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Agriculture"
         tools:targetApi="31">
         <activity
+            android:name=".UploadProfilePicActivity"
+            android:exported="false" />
+        <activity
             android:name=".EditProfileActivity"
             android:exported="false" />
         <activity
