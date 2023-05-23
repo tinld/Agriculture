@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class CategoryFragment extends Fragment {
@@ -33,9 +36,11 @@ public class CategoryFragment extends Fragment {
     FirebaseAuth auth = FirebaseAuth.getInstance();
     private DatabaseReference database = FirebaseDatabase.getInstance().getReference("cart");
     private CartAdapter cartAdapter;
-    ArrayList<CartProduct> list;
+    private ArrayList<CartProduct> list;
+    private TextView totalPrice;
+    private Integer price=0;
 
-    Button payment;
+    private Button payment;
 
     public CategoryFragment() {
         // Required empty public constructor
@@ -56,20 +61,26 @@ public class CategoryFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.cartList);
         payment = view.findViewById(R.id.paymentBtn);
+        totalPrice = view.findViewById(R.id.totalPrice);
         cartAdapter = new CartAdapter(this.getContext(), list);
         recyclerView.setAdapter(cartAdapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-
+        price = 0;
         if(list.isEmpty()){
             database.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for(DataSnapshot dataSnapshot: snapshot.getChildren()){
                         CartProduct cart = dataSnapshot.getValue(CartProduct.class);
-                        list.add(cart);
+                        if(cart.getStatus().equals("Unpayment")){
+                            price += cart.getProductPrice()*cart.getProductQuantity();
+                            list.add(cart);
+                        }
                     }
                     cartAdapter.notifyDataSetChanged();
+                    String totalPriceText = "Total Price:   " + price.toString();
+                    totalPrice.setText(totalPriceText);
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
@@ -82,6 +93,10 @@ public class CategoryFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), Shipping.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList("carts", list);
+                i.putExtras(bundle);
+                startActivity(i);
             }
         });
     }

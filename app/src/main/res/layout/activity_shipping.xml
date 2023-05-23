@@ -4,6 +4,123 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Shipping">
+    android:background="#4CAF50"
+    tools:context=".MainActivity">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/custome_edittext"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:text="Payment"
+                android:textAlignment="center"
+                android:textColor="#009688"
+                android:textSize="36sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/shippingLocation"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custome_edittext"
+                android:drawableLeft="@drawable/baseline_add_location_24"
+                android:drawablePadding="8dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:hint="Location"
+                android:padding="8dp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Pay method:"
+                android:gravity="center"
+                android:textSize="20dp"
+                />
+            <CheckBox
+                android:id="@+id/direct"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="After receiving product"
+                android:fontFamily="@font/montserrat_medium"
+                android:textSize="16dp"/>
+
+            <CheckBox
+                android:id="@+id/online"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Online"
+                android:fontFamily="@font/montserrat_medium"
+                android:textSize="16dp"/>
+
+            <LinearLayout
+                android:id="@+id/paymentOnline"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:text="Payment Via"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:gravity="center"
+                    android:textSize="15dp"
+                    android:layout_height="match_parent"/>
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:background="@drawable/momo"
+                    android:layout_height="match_parent" />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/zalo"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/order"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#4CAF50"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Order"
+                android:textSize="18sp"
+                app:cornerRadius="20dp" />
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

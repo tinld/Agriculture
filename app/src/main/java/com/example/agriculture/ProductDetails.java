@@ -119,7 +119,8 @@ public class ProductDetails extends AppCompatActivity {
         String keyCart = String.valueOf(DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime()).hashCode());
         totalPrice = quantity*price;
         String userID = auth.getCurrentUser().getUid();
-        cart = new CartProduct(quantity, price, nameProduct, unitProduct, imageProduct, currentDate, keyCart,userID);
+        String status = "Unpayment";
+        cart = new CartProduct(quantity, price, nameProduct, unitProduct, imageProduct, currentDate, keyCart,userID, status, keyProduct);
 
         database.child(keyCart).setValue(cart)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
