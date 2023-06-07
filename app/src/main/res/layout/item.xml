@@ -46,9 +46,9 @@
                 android:layout_height="30dp"
                 android:gravity="center"
                 android:text="Apple"
-                android:textColor="#05BFDB"
-                android:textSize="20dp"
-                android:textStyle="bold"
+                android:fontFamily="@font/monserrat"
+                android:textColor="#3C486B"
+                android:textSize="25dp"
                 android:layout_marginTop="5dp"/>
 
             <TextView
@@ -58,9 +58,9 @@
                 android:text="15000 VND/kg"
                 android:layout_marginTop="7dp"
                 android:textColor="@color/black"
+                android:fontFamily="@font/monserrat"
                 android:gravity="center"
-                android:textSize="17dp"
-                android:textStyle="bold" />
+                android:textSize="17dp" />
 
             <TextView
                 android:id="@+id/tv_qty"
@@ -68,6 +68,7 @@
                 android:layout_height="32dp"
                 android:gravity="center"
                 android:text="1000"
+                android:fontFamily="@font/monserrat"
                 android:layout_marginTop="7dp"
                 android:textColor="@color/black"/>
         </LinearLayout>

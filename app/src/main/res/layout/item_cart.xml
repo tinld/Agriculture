@@ -36,6 +36,7 @@
                     android:text="Name Product"
                     android:textSize="17dp"
                     android:textStyle="bold"
+                    android:fontFamily="@font/montserrat_medium"
                     android:gravity="center"
                     android:textColor="#2A2F4F"/>
                 <ImageButton
@@ -49,6 +50,7 @@
             <TextView
                 android:id="@+id/quantityProduct"
                 android:layout_width="230dp"
+                android:fontFamily="@font/montserrat_medium"
                 android:layout_height="25dp"
                 android:text="Số lượng: 1"
                 android:textSize="14dp"
@@ -60,6 +62,7 @@
                 android:layout_height="match_parent"
                 android:text="Price: 50,000 VND"
                 android:gravity="center"
+                android:fontFamily="@font/montserrat_medium"
                 android:textColor="#F15A59"
                 android:textStyle="bold"/>
         </LinearLayout>

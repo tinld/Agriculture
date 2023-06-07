@@ -8,8 +8,8 @@
     tools:context=".MainActivity">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="342dp"
+            android:layout_height="615dp"
             android:layout_margin="30dp"
             app:cardCornerRadius="30dp"
             app:cardElevation="20dp"
@@ -24,12 +24,16 @@
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/custome_edittext"
                     android:orientation="vertical"
-                    android:padding="24dp">
+                    android:paddingLeft="24dp"
+                    android:paddingTop="35dp"
+                    android:paddingRight="24dp"
+                    android:paddingBottom="14dp">
 
                         <TextView
                             android:id="@+id/textView8"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+
                             android:text="Upload Product"
                             android:textAlignment="center"
                             android:textColor="#009688"
@@ -40,7 +44,7 @@
                             android:id="@+id/productItemName"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:layout_marginTop="40dp"
+                            android:layout_marginTop="20dp"
                             android:background="@drawable/custome_edittext"
                             android:drawableLeft="@drawable/baseline_local_grocery_store_24"
                             android:drawablePadding="8dp"
@@ -131,7 +135,6 @@
                             android:id="@+id/uploadFile"
                             android:layout_width="match_parent"
                             android:layout_height="60dp"
-                            android:layout_marginTop="30dp"
                             android:backgroundTint="#4CAF50"
                             android:text="Upload"
                             android:textSize="18sp"

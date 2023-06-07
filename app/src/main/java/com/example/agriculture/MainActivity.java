@@ -73,6 +73,23 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                // Không cần thực hiện gì trong phương thức này
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                // Cập nhật item được chọn trong BottomNavigationView khi vuốt màn hình
+                bottomNavigationView.getMenu().getItem(position).setChecked(true);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                // Không cần thực hiện gì trong phương thức này
+            }
+        });
     }
 
     private static class PagerAdapter extends FragmentPagerAdapter {

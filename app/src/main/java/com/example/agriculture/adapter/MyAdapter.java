@@ -43,7 +43,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         ProductItem product = list.get(position);
         holder.productItemPrice.setText(String.valueOf(product.getProductItemPrice() +" VND/" + product.getUnitItem()));
         holder.productItemName.setText(product.getProductItemName());
-        holder.getProductIteQty.setText(String.valueOf(product.getGetProductIteQty()));
+        holder.getProductIteQty.setText(String.valueOf("Quantity: " + product.getGetProductIteQty()));
         Glide.with(context).load(product.getDataImage()).into(holder.dataImage);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +53,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 Bundle itemData = new Bundle();
                 itemData.putString("Key", product.getKey());
                 itemData.putString("Image", product.getDataImage());
+                itemData.putString("Location", product.getLocationItem());
                 itemData.putString("Name", product.getProductItemName());
                 itemData.putString("Unit", product.getUnitItem());
                 itemData.putInt("Price", product.getProductItemPrice());
@@ -66,6 +67,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    public void searchDataList(ArrayList<ProductItem> searchList){
+        list = searchList;
+        notifyDataSetChanged();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{

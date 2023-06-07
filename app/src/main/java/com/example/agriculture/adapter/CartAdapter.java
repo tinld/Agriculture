@@ -50,10 +50,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         CartProduct cart = list.get(position);
-
-        holder.nameProduct.setText(cart.getProductItemName());
-        holder.quantityProduct.setText(String.valueOf(cart.getProductQuantity()));
-        holder.priceProduct.setText(String.valueOf(cart.getProductPrice()));
+        String nameProduct = "Name: " + cart.getProductItemName();
+        String quantityProduct = "Quantity: " +  String.valueOf(cart.getProductQuantity());
+        String priceProduct = "Price: " + String.valueOf(cart.getProductPrice());
+        holder.nameProduct.setText(nameProduct);
+        holder.quantityProduct.setText(quantityProduct);
+        holder.priceProduct.setText(priceProduct);
         Glide.with(context).load(cart.getDataImage()).into(holder.imageProduct);
 
         holder.deleteBtn.setOnClickListener(new View.OnClickListener() {

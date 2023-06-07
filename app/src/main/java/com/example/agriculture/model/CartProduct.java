@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 public class CartProduct implements Parcelable {
     private Integer productQuantity, productPrice;
-    private String productItemName, unitItem, dataImage, currentDate, key, userID, Status, productKey;
+    private String productItemName, unitItem, dataImage, currentDate, key, userID, status, productKey;
 
     public Integer getProductQuantity() {
         return productQuantity;
@@ -44,17 +44,17 @@ public class CartProduct implements Parcelable {
     }
 
     public String getStatus() {
-        return Status;
+        return status;
     }
 
     public CartProduct(Integer productQuantity, Integer productPrice, String productItemName, String unitItem, String dataImage, String currentDate, String key, String userID, String status, String productKey) {
-        this.productQuantity = productQuantity;
         this.productPrice = productPrice;
+        this.productQuantity = productQuantity;
         this.productItemName = productItemName;
         this.unitItem = unitItem;
         this.dataImage = dataImage;
         this.currentDate = currentDate;
-        this.Status = status;
+        this.status = status;
         this.key = key;
         this.userID = userID;
         this.productKey = productKey;
@@ -78,23 +78,23 @@ public class CartProduct implements Parcelable {
         dest.writeString(unitItem);
         dest.writeString(dataImage);
         dest.writeString(currentDate);
+        dest.writeString(status);
         dest.writeString(key);
         dest.writeString(userID);
-        dest.writeString(Status);
         dest.writeString(productKey);
     }
 
     public CartProduct(Parcel in) {
-        productQuantity = in.readInt();
         productPrice = in.readInt();
+        productQuantity = in.readInt();
         productItemName = in.readString();
         unitItem = in.readString();
         dataImage = in.readString();
         currentDate = in.readString();
+        status = in.readString();
         key = in.readString();
         userID = in.readString();
         productKey = in.readString();
-        Status = in.readString();
     }
 
     public static final Parcelable.Creator<CartProduct> CREATOR = new Parcelable.Creator<CartProduct>() {

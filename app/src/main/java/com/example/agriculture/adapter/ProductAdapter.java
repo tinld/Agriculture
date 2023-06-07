@@ -32,7 +32,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
-        holder.categoryName.setText(productCategoryList.get(position).getProductName());
+        String productName = productCategoryList.get(position).getProductName();
+        holder.categoryName.setText(productName);
     }
 
     @Override
